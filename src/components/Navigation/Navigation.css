@@ -1,0 +1,26 @@
+.navigation{
+    margin-top: 28px;
+    display: flex;
+    justify-content: flex-end;
+}
+.navigation__item{
+    text-align: right;
+    text-decoration: none;
+    color: white;
+    margin-left: 20px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    font-family: Inter, Arial, sans-serif;
+}
+
+.navigation__item_hidden{
+    display: none;
+}
+.navigation__button{
+    background-color: #3DDC84;
+    color: black;
+    border: none;
+    border-radius: 3px;
+}

@@ -1,0 +1,41 @@
+.techs{
+    width: 90%;
+    margin: 100px auto;
+    font-style: normal;
+    font-weight: normal;
+    font-family: Inter, Arial, sans-serif;
+}
+.techs__header{
+    text-align: left;
+    font-size: 22px;
+    line-height: 27px;
+    border-bottom: 1px solid #DADADA;
+    padding-bottom: 23px;
+}
+.techs__name{
+    font-size: 50px;
+    line-height: 58px;
+    margin: 90px auto 0;
+}
+.techs__description{
+    font-size: 14px;
+    line-height: 20px;
+    margin: 26px auto 100px;
+    width: 36%;
+}
+.techs__list{
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin: 0 auto;
+}
+.list_item{
+    list-style-type:none;
+    width: 90px;
+    background-color: #303030;
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 17px;
+    padding: 21px 0;
+}
