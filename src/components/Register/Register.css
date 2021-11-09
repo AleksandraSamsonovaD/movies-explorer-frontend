@@ -19,6 +19,7 @@
     background-color: #2F2F2F;
     color: white;
     padding: 15px;
+    width: 100%;
 }
 .register__text:focus{
     outline: none;

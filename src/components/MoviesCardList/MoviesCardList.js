@@ -1,8 +1,15 @@
 import './MoviesCardList.css';
+import MoviesCard from '../MoviesCard/MoviesCard';
 
-function MoviesCardList() {
+function MoviesCardList(props) {
   return (
-    <div className="MoviesCardList">
+    <div className="moviesCardList">
+      {props.movies?.map((movie) => (
+                    <MoviesCard key={movie.id}
+                                movie={movie}
+                                saved={true}
+                                page__save={props.page__save}  />
+                ))}
     </div>
   );
 }

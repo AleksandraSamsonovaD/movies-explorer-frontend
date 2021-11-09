@@ -2,20 +2,26 @@ import './App.css';
 import Main from '../Main/Main'
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import SavedMovies from '../SavedMovies/SavedMovies';
+import Movies from '../Movies/Movies';
+import Profile from '../Profile/Profile';
 import { useEffect, useState } from "react";
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { Redirect, Route, useHistory, Switch } from 'react-router-dom';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
+import {movies} from '../../utils/beatfilm-movies';
+import PageNotFound from '../PageNotFound/PageNotFound';
 
 
 function App() {
   const [currentUser, setCurrentUser] = useState();
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
 
   return (
     <div className="App">
       <CurrentUserContext.Provider value={currentUser}>
+        {loggedIn ? <Header loggedIn={loggedIn} /> : ''}
         <Switch>
           <Route path="/sign-in">
             <Login />
@@ -23,14 +29,23 @@ function App() {
           <Route path="/sign-up">
             <Register />
           </Route>
-          <Route path="/">
-            <Header className="header" loggedIn={loggedIn} />
-            <Main />
-            <Footer />
+          <Route path="/movies">
+            {!loggedIn ? <Redirect to="/sign-in" /> : <Movies movies={movies} />}
           </Route>
-          <Footer />
+          <Route path="/saved-movies">
+            {!loggedIn ? <Redirect to="/sign-in" /> : <SavedMovies movies={movies} />}
+          </Route>
+          <Route path="/profile">
+            {!loggedIn ? <Redirect to="/sign-in" /> : <Profile />}
+          </Route>
+          <Route exact path="/">
+            <Main />
+          </Route>
+          <Route path="*">
+            <PageNotFound />
+          </Route>
         </Switch>
-
+        {loggedIn ? <Footer /> : ''}
       </CurrentUserContext.Provider>
     </div>
   );

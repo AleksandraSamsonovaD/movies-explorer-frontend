@@ -1,0 +1,31 @@
+.notFound{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background-color: #202020;
+}
+.notFound__num{
+    font-family: Inter, Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 140px;
+    line-height: 169px;
+    margin: 35% auto 0;
+}
+.notFound__title{
+    font-family: Inter, Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    margin: 5px auto 184px;
+}
+.notFound__button{
+    font-family: Inter, Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: #4285F4;
+    text-decoration: none;
+}
