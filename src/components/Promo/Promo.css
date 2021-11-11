@@ -8,13 +8,30 @@
     font-size: 50px;
     line-height: 58px;
     font-family: Inter, Arial, sans-serif;
-    width: 740px;
+    width: 60%;
     margin: 0 auto ;
     padding: 184px 0 224px;
 }
 .promo__logo{
     position: absolute;
     width: 320px;
-    top: 23.5%;
-    left: 37.5%;
+    bottom: 23.5%;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+@media (max-width: 768px)  {
+    .promo_header{
+        font-style: normal;
+        font-weight: normal;
+        font-size: 31px;
+        line-height: 39px;
+        font-family: Inter, Arial, sans-serif;
+    }
+    .promo__logo{
+        bottom: 18.3%;
+    }
+    .promo_header{
+        width: 90%;
+    }
 }

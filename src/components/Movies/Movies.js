@@ -7,7 +7,7 @@ function Movies(props) {
   return (
     <div className="movies">
       <SearchForm/>
-      <MoviesCardList movies={props.movies} />
+      <MoviesCardList movies={props.movies} page__save={false}/>
       <button className="movies__button">Ещё</button>
     </div>
   );

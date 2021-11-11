@@ -28,12 +28,15 @@ function Register() {
     <div className="register">
       <img className="register__logo" alt="Логотип" src={logo} />
       <Form title="Добро пожаловать!" buttonText="Зарегистрироваться" handleSubmit={handleSubmit}>
+      <p className="register__label">Имя</p>
       <input type="text" className="register__text" name="name"
           placeholder="Иля" value={name} onChange={nameChange}
         />
+        <p className="register__label">E-mail</p>
         <input type="text" className="register__text" name="email"
           placeholder="Email" value={email} onChange={emailChange}
         />
+        <p className="register__label">Пароль</p>
         <input type="password" className="register__text" name="password"
           placeholder="Пароль" value={password} onChange={passwordChange}
         />

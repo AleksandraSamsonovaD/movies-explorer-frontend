@@ -7,11 +7,12 @@ function MoviesCardList(props) {
       {props.movies?.map((movie) => (
                     <MoviesCard key={movie.id}
                                 movie={movie}
-                                saved={true}
+                                saved={false}
                                 page__save={props.page__save}  />
                 ))}
     </div>
   );
 }
-
+//saved--сохранен ли фильм
+//page__save -- страница сохраненые фильмов
 export default MoviesCardList;

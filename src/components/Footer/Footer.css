@@ -40,3 +40,16 @@
     font-size: 13px;
     line-height: 16px;
 }
+ 
+@media (max-width: 767px)  {
+    .footer_blocks{
+        flex-direction:column-reverse;
+    }
+    .footer__links{
+        flex-direction:column;
+    }
+    .footer__copyright{
+        margin-top: 30px;
+        color: #8B8B8B;
+    }
+}

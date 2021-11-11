@@ -7,6 +7,7 @@
     justify-content: space-between;
     margin: 70px auto 33px;
     border-bottom: 1px solid #424242;
+    
 }
 .searchForm__text{
     margin: 0 0 13px;
@@ -19,6 +20,7 @@
     color: #8B8B8B;
     background-color: #202020;
     padding: 0;
+    max-width: 80%;
 }
 
 .searchForm__button{

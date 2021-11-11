@@ -15,9 +15,8 @@ import PageNotFound from '../PageNotFound/PageNotFound';
 
 
 function App() {
-  const [currentUser, setCurrentUser] = useState();
-  const [loggedIn, setLoggedIn] = useState(true);
-
+  const [currentUser, setCurrentUser] = useState({name:"Александра", email:"111"});
+  const [loggedIn, setLoggedIn] = useState(false);
   return (
     <div className="App">
       <CurrentUserContext.Provider value={currentUser}>
@@ -36,9 +35,11 @@ function App() {
             {!loggedIn ? <Redirect to="/sign-in" /> : <SavedMovies movies={movies} />}
           </Route>
           <Route path="/profile">
-            {!loggedIn ? <Redirect to="/sign-in" /> : <Profile />}
+            {!loggedIn ? <Redirect to="/sign-in" /> : <Profile name={currentUser.name} email={currentUser.email} />}
           </Route>
           <Route exact path="/">
+           {loggedIn ? '' :<Header loggedIn={loggedIn} /> }
+            
             <Main />
           </Route>
           <Route path="*">

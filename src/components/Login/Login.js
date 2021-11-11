@@ -24,9 +24,11 @@ function Login() {
     <div className="login">
       <img className="login__logo" alt="Логотип" src={logo} />
       <Form title="Рады видеть" buttonText="Войти" handleSubmit={handleSubmit}>
+        <p className="login__label">E-mail</p>
         <input type="text" className="login__text" name="email"
           placeholder="Email" value={email} onChange={emailChange}
         />
+        <p className="login__label">Пароль</p>
         <input type="password" className="login__text" name="password"
           placeholder="Пароль" value={password} onChange={passwordChange}
         />

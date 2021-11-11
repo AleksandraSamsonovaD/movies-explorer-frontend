@@ -1,6 +1,7 @@
 .moviesCard{
     width: 364px;
     background-color: #222222;
+    margin: 0 auto;
 }
 .moviesCard__contener{
     margin: 0;
@@ -37,10 +38,6 @@
 }
 .moviesCard__icon_hidden{
     display: none;
-}
-.moviesCard__icon{
-    width: 10px;
-    height: 13px;
 }
 .moviesCard__save{
     background-color: #313131;

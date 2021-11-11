@@ -60,3 +60,15 @@
     font-size: 14px;
     line-height: 17px;
 }
+.aboutMe__photo{
+    width: 260px;
+    height: 350px;
+}
+@media (max-width: 768px)  {
+    .aboutMe__contener{
+        flex-direction: column-reverse;
+    }
+    .aboutMe__photo{
+        margin: -6px auto 40px;
+    }
+}

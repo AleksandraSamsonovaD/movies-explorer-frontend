@@ -32,8 +32,19 @@
     font-weight: normal;
     font-size: 30px;
     line-height: 50px;
+    color: white;
+    text-decoration: none;
 }
 .portfolio__link__logo{
     width: 15px;
     height: 30px;
+}
+@media (max-width: 767px)  {
+    .portfolio__linkName{
+        font-family: Inter, Arial, sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 28px;  
+    }
 }

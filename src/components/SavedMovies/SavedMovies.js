@@ -6,7 +6,7 @@ function SavedMovies(props) {
   return (
     <div className="savedMovies">
       <SearchForm/>
-      <MoviesCardList movies={props.movies} page__save="true" />
+      <MoviesCardList movies={props.movies} page__save={true} />
     </div>
   );
 }

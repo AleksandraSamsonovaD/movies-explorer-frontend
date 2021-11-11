@@ -1,11 +1,11 @@
 .techs{
     width: 90%;
     margin: 100px auto;
+}
+.techs__header{
     font-style: normal;
     font-weight: normal;
     font-family: Inter, Arial, sans-serif;
-}
-.techs__header{
     text-align: left;
     font-size: 22px;
     line-height: 27px;
@@ -13,11 +13,17 @@
     padding-bottom: 23px;
 }
 .techs__name{
+    font-style: normal;
+    font-weight: normal;
+    font-family: Inter, Arial, sans-serif;
     font-size: 50px;
     line-height: 58px;
     margin: 90px auto 0;
 }
 .techs__description{
+    font-style: normal;
+    font-weight: normal;
+    font-family: Inter, Arial, sans-serif;
     font-size: 14px;
     line-height: 20px;
     margin: 26px auto 100px;
@@ -26,11 +32,13 @@
 .techs__list{
     width: 50%;
     display: flex;
-    justify-content: flex-end;
     gap: 10px;
     margin: 0 auto;
 }
 .list_item{
+    font-style: normal;
+    font-weight: normal;
+    font-family: Inter, Arial, sans-serif;
     list-style-type:none;
     width: 90px;
     background-color: #303030;
@@ -39,3 +47,13 @@
     line-height: 17px;
     padding: 21px 0;
 }
+@media (max-width: 1024px)  {
+    .techs__list{
+        width: 80%;
+        flex-wrap:wrap
+    }
+    .techs__description{
+        width: 50%;
+    }
+}
+
