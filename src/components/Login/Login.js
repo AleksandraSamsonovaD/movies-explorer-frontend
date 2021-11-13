@@ -2,7 +2,7 @@ import './Login.css';
 import Form from '../Form/Form';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
-import logo from '../../images/logo_header.png';
+import logo from '../../images/logo_header.svg';
 
 function Login() {
   const [email, setEmail] = useState('');

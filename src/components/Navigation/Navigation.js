@@ -1,12 +1,12 @@
 import './Navigation.css';
 import { NavLink } from 'react-router-dom';
-import profile from '../../images/profile.png';
+import profile from '../../images/profile.svg';
 
  function Navigation(props) {
   return (
     <div className="navigation-wrap">
       <nav className= {`${props.loggedIn ? 'navigation_hidden' : 'navigation__noHidden'}`}>
-        <NavLink className={`navigation__item ${props.loggedIn ? 'navigation__item_hidden' : ''}`} to="/sign-up">Зарегистрироваться</NavLink>
+        <NavLink className={`navigation__item ${props.loggedIn ? 'navigation__item_hidden' : ''}`} to="/sign-up">Регестрация</NavLink>
         <NavLink className={`navigation__item ${props.loggedIn ? 'navigation__item_hidden' : ''}`} to="/sign-in"><button className="navigation__button">Войти</button></NavLink>
       </nav>
       <input type ="checkbox" id="checkbox"/>
@@ -21,7 +21,7 @@ import profile from '../../images/profile.png';
           <p className="navigation__account">Аккаунт</p>
           <div className="navigation__icon"><img alt="Аккаунт" src={profile} /></div>
           </NavLink>
-        </nav>
+      </nav>
     </div>
 
   );

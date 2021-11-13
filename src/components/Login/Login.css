@@ -69,3 +69,8 @@
         width: 90%;
     }
 }
+@media (max-width: 425px)  {
+    .login{
+        text-align: center;
+    }
+}

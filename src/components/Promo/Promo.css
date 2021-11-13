@@ -35,3 +35,25 @@
         width: 90%;
     }
 }
+@media (max-width: 768px)  {
+    .promo_header{
+        font-style: normal;
+        font-weight: normal;
+        font-size: 31px;
+        line-height: 39px;
+        font-family: Inter, Arial, sans-serif;
+    }
+    .promo__logo{
+        bottom: 18.3%;
+    }
+    .promo_header{
+        width: 90%;
+    }
+}@media (max-width: 425px)  {
+    .promo__logo{
+        width: 248px;
+    }
+    .promo__logo{
+        bottom: 34.3%;
+    }
+}

@@ -22,11 +22,17 @@
     padding: 0;
     max-width: 80%;
 }
-
+.searchForm__text:focus{
+    outline: none;
+}
 .searchForm__button{
     width: 80px;
     height: 34px;
     background-color: #4285F4;
     border: none;
     border-radius: 48px;
+    padding: 0;
+}
+.searchForm__button:hover{
+    cursor: pointer;
 }

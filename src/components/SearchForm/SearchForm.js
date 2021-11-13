@@ -1,6 +1,6 @@
 import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
-import search from '../../images/search.png';
+import search from '../../images/search.svg';
 import { useState } from 'react';
 
 function SearchForm() {
@@ -13,7 +13,7 @@ function SearchForm() {
     <form className="searchForm">
         <div className="search">
           <input type="text" className="searchForm__text" name="film"
-            placeholder="Фильм" value={film} onChange={filmChange} />
+            placeholder="Фильм" value={film} onChange={filmChange} required />
           <button type="submit" className="searchForm__button"><img className="searchForm__logo" alt="Поиск" src={search} /></button>
         </div>
         <FilterCheckbox/>

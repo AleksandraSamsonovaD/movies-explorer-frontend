@@ -1,7 +1,7 @@
 import './MoviesCard.css';
-import save from '../../images/save.png';
-import saved from '../../images/saved.png';
-import del from '../../images/del.png';
+import save from '../../images/save.svg';
+import saved from '../../images/saved.svg';
+import del from '../../images/del.svg';
 
 function MoviesCard(props) {
   function getTimeFromMins(mins) {
