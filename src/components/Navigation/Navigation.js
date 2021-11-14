@@ -6,7 +6,7 @@ import profile from '../../images/profile.svg';
   return (
     <div className="navigation-wrap">
       <nav className= {`${props.loggedIn ? 'navigation_hidden' : 'navigation__noHidden'}`}>
-        <NavLink className={`navigation__item ${props.loggedIn ? 'navigation__item_hidden' : ''}`} to="/sign-up">Регестрация</NavLink>
+        <NavLink className={`navigation__item ${props.loggedIn ? 'navigation__item_hidden' : ''}`} to="/sign-up">Регистрация</NavLink>
         <NavLink className={`navigation__item navigation__button ${props.loggedIn ? 'navigation__item_hidden' : ''}`} to="/sign-in">Войти</NavLink>
       </nav>
       <input type ="checkbox" id="checkbox"/>

@@ -37,3 +37,8 @@
         margin-top: 82px;
     }
 }
+@media (max-width: 426px)  {
+    .form__title{
+        text-align: center;
+    }
+}
