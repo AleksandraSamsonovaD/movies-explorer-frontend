@@ -35,4 +35,5 @@
 }
 .searchForm__button:hover{
     cursor: pointer;
+    background-color: #3DDC84;
 }
