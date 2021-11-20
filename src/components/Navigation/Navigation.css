@@ -1,0 +1,134 @@
+.navigation__item{
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    font-family: Inter, Arial, sans-serif;
+    padding-top: 28px;
+    margin: 0 auto;
+    border-bottom: 2px solid rgba(255, 255, 255, 0);
+    vertical-align: bottom;
+}
+a.navigation__item:hover{
+    border-bottom: 2px solid white;
+}
+.navigation__noHidden a.navigation__item:hover{
+    border: none;
+}
+.navigation__item_account{
+    display: flex;
+    margin: 620px auto 0;
+}
+
+.navigation__account{
+    margin: 0 13px 0 30px;
+}
+.navigation__icon{
+    padding:7px;
+    border-radius: 6px;
+    background-color: #313131;
+    margin-top: -4px;
+}
+.navigation__button{
+    background-color: #3DDC84;
+    color: black;
+    border: none;
+    border-radius: 3px;
+    margin-left: 20px;
+    padding: 8px 20px;
+}
+
+
+.navigation {
+    position: fixed;
+    background-color: #202020;
+    right: 0;
+    width: 70%;
+    display: flex;
+    flex-direction:column;
+    max-height: 0px;
+    overflow: hidden;
+    transition: all 0.5s;
+}
+
+#checkbox {
+    display: none;
+}
+#checkbox:checked ~ label .navTab__icon {
+    background-image: url("../../images/close.svg");
+    width: 32px;
+    height: 32px;
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 2;
+}
+#checkbox:checked ~ .navigation-wrap {
+    width: 100%;
+    background-color: red;
+    height: 24px;
+}
+#checkbox:checked ~ .navigation {
+    min-height: 100vh;
+    padding: 85px 0;
+    transition: all 0.5s;
+    z-index: 1;
+}
+
+.navTab__icon{
+    margin: 15px;
+    width: 44px;
+    height: 44px;
+    background-image: url("../../images/menu.svg");
+}
+
+.navigation_hidden{
+    display: none;
+}
+.navigation__noHidden{
+    position: relative;
+        top: -10px;
+        background-color: transparent;
+        max-height: 70px;
+        padding: 38px 0;
+        text-align: right;
+}
+@media (min-width: 769px) { 
+    .navTab__icon {
+        display: none;
+    }
+    .navigation {
+        position: relative;
+        top: -10px;
+        background-color: transparent;
+        width: 100%;
+        flex-direction:row;
+        max-height: 70px;
+        padding: 28px 0;
+        text-align: right;
+    }
+    .navigation__item{
+        text-align: right;
+        padding-top: 7px;
+        margin-left: 20px; 
+    }
+    .navigation__item_account{
+        margin-top: 0;
+    }
+    .navigation__about{
+        display: none;
+    }
+    
+}
+@media (max-width: 426px) { 
+    .navigation {
+        width: 100%;
+    }
+}
+
+.navigation__item_hidden{
+    display: none;
+}

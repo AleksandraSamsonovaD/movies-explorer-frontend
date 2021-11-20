@@ -1,0 +1,14 @@
+.navTab{
+    display: flex;
+    justify-content: center;
+    margin: 24px auto;
+    gap: 24px;
+}
+.navTab__item{
+    color: white;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    font-family: Inter, Arial, sans-serif;
+}

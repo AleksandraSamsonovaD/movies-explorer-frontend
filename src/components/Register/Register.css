@@ -1,0 +1,76 @@
+.register{
+    width: 33%;
+    margin: 0 auto;
+    text-align: left;
+    padding-bottom: 70px;
+}
+.register__logo{
+    margin: 70px 0 40px;
+}
+.register__text{
+    margin: 0 auto 10px;
+    border: none;
+    border-radius: 8px;
+    font-family: Inter, Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    background-color: #2F2F2F;
+    color: white;
+    padding: 15px;
+    width: 100%;
+}
+.register__text:focus{
+    outline: none;
+}
+.register__come{
+    font-family: Inter, Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: #8B8B8B;
+    padding: 0;
+    margin: 16px auto 0;
+    text-align: center;
+}
+.register__link{
+    font-family: Inter, Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: #4285F4;
+    text-decoration: none;
+    margin-left: 6px;
+}
+.register__label{
+    font-family: Inter, Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 12px;
+    color: #8B8B8B;
+    text-align: left;
+    margin: 10px 0;
+}
+
+@media (max-width: 1024px)  {
+    .register{
+        width: 50%;
+    }
+    .register__text{
+        width: 90%;
+    }
+}
+@media (max-width: 768px)  {
+    .register{
+        width: 90%;
+    }
+}
+@media (max-width: 425px)  {
+    .register{
+        text-align: center;
+    }
+}

@@ -1,0 +1,100 @@
+.aboutProject{
+    width: 90%;
+    margin: 110px auto;
+    text-align: left;
+}
+.aboutProject__header{
+    font-style: normal;
+    font-weight: normal;
+    font-family: Inter, Arial, sans-serif;
+    font-size: 22px;
+    line-height: 27px;
+    border-bottom: 1px solid #DADADA;
+    padding-bottom: 23px;
+    margin: 0;
+}
+.description{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px 40px;
+    flex-direction: column;
+}
+.description__item{
+    font-style: normal;
+    font-weight: normal;
+    font-family: Inter, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0;
+}
+.description__header{
+    font-style: normal;
+    font-weight: normal;
+    font-family: Inter, Arial, sans-serif;
+    font-size: 20px;
+    line-height: 24px;
+    margin: 70px 0 0;
+    vertical-align: bottom;
+}
+.plan{
+    display: grid;
+    grid-template-columns: 1fr 4fr;  
+}
+.plan__term{
+    text-align: center;
+    font-style: normal;
+    font-weight: normal;
+    font-family: Inter, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 15px;
+    margin: 110px 0 0 ;
+}
+.plan__back{
+    background-color: #3DDC84;
+    color: black;
+}
+.plan__front{
+    background-color: #303030;
+}
+.plan__text{
+    margin: 9px auto;
+}
+.plan__item{
+    font-style: normal;
+    font-weight: normal;
+    font-family: Inter, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 17px;
+    color: #8B8B8B;
+    text-align: center;
+    margin: 14px auto 0;
+}
+@media (max-width: 768px)  {
+    .description{
+        grid-template-rows: [start] 1fr [row2] 1fr [row3] 1fr [row4] 1fr [row-end];
+        grid-template-columns: [start] 1fr [col-end];
+        gap: 16px ;
+    }
+    .post-1{
+        grid-row-start: start;
+        grid-column-start: start; 
+    }
+    .post-2{
+        grid-row-start: row3;
+        grid-column-start: start; 
+    }
+    .post-3{
+        grid-row-start: row2;
+        grid-column-start: start; 
+    }
+    .post-4{
+        grid-row-start: row4;
+        grid-column-start: start; 
+    }
+    .description__header{
+        margin: 0;
+    }
+    .aboutProject__header{
+        margin-bottom: 60px;
+    }
+}

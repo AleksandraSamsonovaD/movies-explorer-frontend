@@ -1,0 +1,14 @@
+.movies__button{
+    padding: 11px 60px 9px;
+    margin: 50px auto 80px;
+    border: 1px solid #424242;
+    background-color: #202020;
+    border-radius: 5px;
+    font-family: Inter, Arial, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    color: white;
+    width: 30%;
+}
