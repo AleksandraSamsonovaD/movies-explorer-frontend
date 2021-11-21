@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import logo from '../../images/logo_header.svg';
 
-function Login() {
+function Login(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -18,7 +18,7 @@ function Login() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    //props.handleSubmit(password, email);
+    props.handleSubmit(password, email);
   }
   return (
     <div className="login">

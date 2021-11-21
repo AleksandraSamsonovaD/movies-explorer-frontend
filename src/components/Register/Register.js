@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import logo from '../../images/logo_header.svg';
 
-function Register() {
+function Register(props) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -22,7 +22,7 @@ function Register() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    //props.handleSubmit(password, email);
+    props.handleSubmit(password, email, name);
   }
   return (
     <div className="register">
@@ -30,15 +30,15 @@ function Register() {
       <Form title="Добро пожаловать!" buttonText="Зарегистрироваться" handleSubmit={handleSubmit}>
       <p className="register__label">Имя</p>
       <input type="text" className="register__text" name="name"
-          placeholder="Иля" value={name} onChange={nameChange}
+          placeholder="Иля" value={name} onChange={nameChange} required
         />
         <p className="register__label">E-mail</p>
         <input type="text" className="register__text" name="email"
-          placeholder="Email" value={email} onChange={emailChange}
+          placeholder="Email" value={email} onChange={emailChange} required
         />
         <p className="register__label">Пароль</p>
         <input type="password" className="register__text" name="password"
-          placeholder="Пароль" value={password} onChange={passwordChange}
+          placeholder="Пароль" value={password} onChange={passwordChange} required
         />
       </Form>
       <p className="register__come" >Уже зарегистрированы?<NavLink className="register__link" to="/sign-in">Войти</NavLink></p>

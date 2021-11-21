@@ -5,3 +5,6 @@
     width: 90%;
     margin: 0 auto;
 }
+.moviesCardList__header_hidden{
+    display: none;
+}

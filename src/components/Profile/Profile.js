@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 
 function Profile(props) {
-  console.log(props.name);
   const [name, setName] = useState(props.name);
   const [email, setEmail] = useState(props.email);
 
@@ -16,6 +15,12 @@ function Profile(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    props.handleSubmit(name, email);
+  }
+
+  function handleSubmitOut(e) {
+    e.preventDefault();
+    props.handleSubmitOut();
   }
 
   return (
@@ -36,7 +41,7 @@ function Profile(props) {
         </div>
         <button type="submit" className="profile__save" >Редактировать</button>
       </form>
-      <NavLink className="profile__out" to="/sign-up">Выйти</NavLink>
+      <NavLink className="profile__out" to="/sign-up" onClick={handleSubmitOut} >Выйти</NavLink>
     </div>
   );
 }
