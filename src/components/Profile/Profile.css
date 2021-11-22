@@ -73,7 +73,25 @@
     
 }
 
+.profile__error_input{
+    text-align: left;
+    color: red;
+    font-family: Inter, Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+}
+.profile__save_disabled{
+    color: gray;
+}
 
+.profile__save:hover{
+    cursor: pointer;
+}
+.profile__save_disabled:hover{
+    cursor:default;
+}
 @media (max-width: 768px)  {
     .profile{
         width: 70%;

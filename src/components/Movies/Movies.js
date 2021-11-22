@@ -11,7 +11,6 @@ function Movies(props) {
       <Preloader/> :
       <MoviesCardList movies={props.movies} page__save={false} onSaveMovie={props.onSaveMovie} onCheckSaved={props.onCheckSaved} onDeleteMovies={props.onDeleteMovies}/>
       }
-    <button className="movies__button">Ещё</button>
     </div>
   );
 }

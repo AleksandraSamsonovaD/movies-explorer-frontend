@@ -3,6 +3,9 @@ import { NavLink } from 'react-router-dom';
 import profile from '../../images/profile.svg';
 
  function Navigation(props) {
+   function onClickSavedMovies() {
+    props.onClickSavedMovies(false);
+   }
   return (
     <div className="navigation-wrap">
       <nav className= {`${props.loggedIn ? 'navigation_hidden' : 'navigation__noHidden'}`}>
@@ -16,7 +19,7 @@ import profile from '../../images/profile.svg';
       <nav className="navigation">
         <NavLink className={`navigation__about navigation__item ${props.loggedIn ? '' : 'navigation__item_hidden'}`} to="/">Главная</NavLink>
         <NavLink className={`navigation__item ${props.loggedIn ? '' : 'navigation__item_hidden'}`} to="/movies">Фильмы</NavLink>
-        <NavLink className={`navigation__item ${props.loggedIn ? '' : 'navigation__item_hidden'}`} to="/saved-movies">Сохраненые фильмы</NavLink>
+        <NavLink className={`navigation__item ${props.loggedIn ? '' : 'navigation__item_hidden'}`} to="/saved-movies" onClick={onClickSavedMovies}>Сохраненые фильмы</NavLink>
         <NavLink className={`navigation__item navigation__item_account ${props.loggedIn ? '' : 'navigation__item_hidden'}`} to="/profile"  >
           <p className="navigation__account">Аккаунт</p>
           <img className="navigation__icon" alt="Аккаунт" src={profile} />

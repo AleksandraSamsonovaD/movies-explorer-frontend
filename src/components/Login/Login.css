@@ -56,6 +56,15 @@
     margin: 10px 0;
 }
 
+.login__error_input{
+    text-align: left;
+    color: red;
+    font-family: Inter, Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+}
 @media (max-width: 1024px)  {
     .login{
         width: 50%;

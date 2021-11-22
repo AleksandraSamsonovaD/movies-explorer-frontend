@@ -41,7 +41,6 @@ function App() {
    // }
   }, []);
 
-
   function searchMovies(findName, allMovies, shortFilm, setFinded) {
     let searchMovie = [];
     allMovies.forEach((movie) => {
@@ -139,11 +138,21 @@ function App() {
   }
 
   function deleteMovies(id) {
-    mainApi.deleteMovies(id)
+    let trueId = matchingIdSereverToDB(id);
+    mainApi.deleteMovies(trueId)
     .then(()=>{
-      setMoviesSaveValue((state) => state.filter((m) => m._id != id));
+      setMoviesSaveValue((state) => {return state.filter((m) => {return m._id != trueId})});
     })
     .catch((err) => console.log(err));
+  }
+
+  function matchingIdSereverToDB(id) {
+    const regex = /^[0-9a-fA-F]{24}$/;
+    if (!regex.test(id)){
+      return moviesSave.find((movie)=>{
+        return movie.movieId == id})._id;
+    }
+    return id;
   }
 
   function checkSaved(id) {
@@ -156,7 +165,7 @@ function App() {
   return (
     <div className="App">
       <CurrentUserContext.Provider value={currentUser}>
-        {loggedIn ? <Header loggedIn={loggedIn} /> : ''}
+        {loggedIn ? <Header loggedIn={loggedIn} onClickSavedMovies={setSaveMoviesFinded}/> : ''}
         <Switch>
           <Route path="/sign-in">
             <Login handleSubmit={handleSubmitLogin} />
@@ -165,20 +174,19 @@ function App() {
             <Register handleSubmit={handleSubmitRegister} />
           </Route>
           <Route path="/movies">
-            {!loggedIn ? <Redirect to="/sign-in" /> : <Movies movies={findMovies} onSearch={handleSubmitSearch} onSaveMovie={saveMovies}  onCheckSaved={checkSaved} onDeleteMovies={deleteMovies} onLoadingMovies={onLoadingMovies}/>}
+            {!loggedIn ? <Redirect to="/" /> : <Movies movies={findMovies} onSearch={handleSubmitSearch} onSaveMovie={saveMovies}  onCheckSaved={checkSaved} onDeleteMovies={deleteMovies} onLoadingMovies={onLoadingMovies}/>}
           </Route>
           <Route path="/saved-movies">
-            {!loggedIn ? <Redirect to="/sign-in" /> : <SavedMovies movies={saveMoviesFinded ? findMoviesSave : moviesSave} onDeleteMovies={deleteMovies} onLoadingMovies={onLoadingMovies} onSearch={handleSubmitSearchSaveMovies}/>}
+            {!loggedIn ? <Redirect to="/" /> : <SavedMovies movies={saveMoviesFinded ? findMoviesSave : moviesSave} onDeleteMovies={deleteMovies} onLoadingMovies={onLoadingMovies} onSearch={handleSubmitSearchSaveMovies}/>}
           </Route>
           <Route path="/profile">
-            {!loggedIn ? <Redirect to="/sign-in" /> : <Profile name={currentUser.name} email={currentUser.email} handleSubmit={handleUpdateUser} handleSubmitOut={handleSubmitOut} />}
+            {!loggedIn ? <Redirect to="/" /> : <Profile name={currentUser.name} email={currentUser.email} handleSubmit={handleUpdateUser} handleSubmitOut={handleSubmitOut} />}
           </Route>
           <Route exact path="/">
             {loggedIn ? '' : <Header loggedIn={loggedIn} />}
-
             <Main />
           </Route>
-          <Route path="*">
+          <Route >
             <PageNotFound />
           </Route>
         </Switch>
