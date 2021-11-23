@@ -3,7 +3,6 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import { useEffect, useState, useCallback } from "react";
 
 function MoviesCardList(props) {
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [moviesCount, setMoviesCount] = useState(12);
   const [countAddMovies, setСountAddMovies] = useState(3);
 
@@ -23,7 +22,6 @@ function MoviesCardList(props) {
 
   }
   const handleWindowResize = useCallback(event => {
-    setScreenWidth(window.innerWidth);
     calculateMovie(window.innerWidth);
   }, []);
 
@@ -47,8 +45,8 @@ function MoviesCardList(props) {
 
   return (
     <div>
+      <h2>{props.header}</h2>
       <div className="moviesCardList">
-        <h2 className={`moviesCardList__header ${props.movies.length < 1 ? '' : 'moviesCardList__header_hidden'}`} >Ничего не найдено</h2>
         {props.movies?.map((movie) => (
           <MoviesCard key={`${props.page__save ? movie._id : movie.id}`}
             movie={movie}

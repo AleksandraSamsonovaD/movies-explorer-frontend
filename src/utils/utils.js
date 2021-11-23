@@ -1,0 +1,1 @@
+export const BASE_URL = 'https://movies.samsonova.nomoredomains.monster/api';

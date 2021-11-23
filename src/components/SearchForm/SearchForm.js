@@ -12,7 +12,8 @@ function SearchForm(props) {
   }
   function handleSubmit(e) {
     e.preventDefault();
-    props.onSearch(film,shortFilm);
+    if (film != '')
+      props.onSearch(film,shortFilm);
 
   }
   function returnCheck(check) {
@@ -24,7 +25,8 @@ function SearchForm(props) {
         <div className="search">
           <input type="text" className="searchForm__text" name="film"
             placeholder="Фильм" value={film} onChange={filmChange} required 
-            onInvalid={(e)=>{e.target.setCustomValidity('Нужно ввести ключевое слово')}}/>
+            onInvalid={(e)=>{e.target.setCustomValidity('Нужно ввести ключевое слово')}}
+            onInput={(e)=>{e.target.setCustomValidity('')}}/>
           <button type="submit" className="searchForm__button" ><img className="searchForm__logo" alt="Поиск" src={search} /></button>
         </div>
         <FilterCheckbox returnCheck={returnCheck}/>

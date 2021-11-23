@@ -3,6 +3,7 @@ import Form from '../Form/Form';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import logo from '../../images/logo_header.svg';
+const isEmail = require('validator/lib/isEmail');
 
 function Login(props) {
   const [email, setEmail] = useState('');
@@ -30,20 +31,16 @@ function Login(props) {
     let errorLabel = '';
     if (email.value.length < 1)
       errorLabel = 'Обязательное поле';
-    else if (!email.checkValidity())
+    else if (!isEmail(email.value, { require_protocol: true }) )
       errorLabel = 'Формат не соответствует';
-    else
-      errorLabel = '';
     checkedValidation( errorLabel, errorPassword);
     setErrorEmail(errorLabel);
   }
 
   function validatePassword(password) {
     let errorLabel = '';
-    if (password.length < 1)
-      errorLabel = 'Обязательное поле';
-    else
-      errorLabel = '';
+    if (password.length < 7)
+      errorLabel = 'Обязательное поле, не менее 7 символов';
     checkedValidation(errorEmail,errorLabel);
     setErrorPassword(errorLabel)
   }
@@ -56,10 +53,12 @@ function Login(props) {
       setEnableButton(false);
   }
 
-
+  function  onClickLink() {
+    props.OnClickLink('');
+  }
   return (
     <div className="login">
-      <img className="login__logo" alt="Логотип" src={logo} />
+      <NavLink className="login__logo" to="/"><img className="logo__image" alt="Логотип" src={logo} /></NavLink>
       <Form title="Рады видеть" buttonText="Войти" handleSubmit={handleSubmit} disabledButton={enableButton}>
         <p className="login__label">E-mail</p>
         <input type="email" className="login__text" name="email"
@@ -72,7 +71,8 @@ function Login(props) {
         />
         <span className="login__error_input">{errorPassword}</span>
       </Form>
-      <p className="login__come" >Еще не зарегистрированы?<NavLink className="login__link" to="/sign-up">Зарегистрироваться</NavLink></p>
+      <span className="login__error_input">{props.errorText}</span>
+      <p className="login__come" >Еще не зарегистрированы?<NavLink onClick={onClickLink} className="login__link" to="/sign-up" >Зарегистрироваться</NavLink></p>
     
     </div>
   );

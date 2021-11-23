@@ -15,39 +15,47 @@ import api from '../../utils/MoviesApi.js';
 import * as mainApi from '../../utils/MainApi.js';
 
 
-function App() {
+function App(props) {
   const history = useHistory();
   const [currentUser, setCurrentUser] = useState({ name: "", email: "" });
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   const [movies, setMoviesValue] = useState([]);
   const [findMovies, setFindMovies] = useState([]);
   const [moviesSave, setMoviesSaveValue] = useState([]);
   const [findMoviesSave, setFindMoviesSave] = useState([]);
   const [saveMoviesFinded, setSaveMoviesFinded] = useState(false);//сбрасывать в false в routers
   const [onLoadingMovies, setOnLoadingMovies] = useState(false);
+  const [errorServer, setErrorServer] = useState('');
+  const [findHeader, setFindHeader] = useState('');
 
   useEffect(() => {
-    //if (loggedIn) {
-      const promisUserInfo = mainApi.getUserInfo();
-      const promisGetMovies = mainApi.getMovies();
-      Promise.all([promisUserInfo, promisGetMovies])
-        .then(([userInform, initialMovies]) => {
-          setCurrentUser({ name: userInform.data.name, email: userInform.data.email });
-          setMoviesSaveValue(initialMovies.data);
-          setLoggedIn(true);
-          history.push("/")
-        })
-        .catch((err) => console.log(err));
-   // }
+    const promisUserInfo = mainApi.getUserInfo();
+    const promisGetMovies = mainApi.getMovies();
+    Promise.all([promisUserInfo, promisGetMovies])
+      .then(([userInform, initialMovies]) => {
+        setCurrentUser({ name: userInform.data.name, email: userInform.data.email });
+        setMoviesSaveValue(initialMovies.data);
+        setLoggedIn(true);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoggedIn(false);
+      });
   }, []);
+
+
 
   function searchMovies(findName, allMovies, shortFilm, setFinded) {
     let searchMovie = [];
     allMovies.forEach((movie) => {
-      if (movie.nameRU.search(findName) != -1 && !(movie.duration < 40 ^ shortFilm) ) {
+      if (movie.nameRU.toUpperCase().search(findName.trim().toUpperCase()) != -1 && ( (movie.duration < 40 && shortFilm) || !shortFilm )
+      ) {
         searchMovie.push(movie);
+        setFindHeader("");
       }
     })
+    if (searchMovie.length == 0)
+      setFindHeader("Ничего не найдено");
     setFinded(searchMovie);
     setOnLoadingMovies(false);
   }
@@ -58,7 +66,7 @@ function App() {
       api.getCards()
         .then((inputMovies) => {
           setMoviesValue(inputMovies);
-          searchMovies(findName, inputMovies,shortFilm, setFindMovies);
+          searchMovies(findName, inputMovies, shortFilm, setFindMovies);
         })
         .catch((err) => console.log(err));
     }
@@ -76,20 +84,21 @@ function App() {
   function handleSubmitRegister(password, email, name) {
 
     mainApi.register(email, password, name).then((data) => {
-      if (data) {
-        history.push("/sign-in");
-      }
+      handleSubmitLogin(password, email);
     })
       .catch((err) => {
-        console.log(err);
+        err.then((data) => {
+          setErrorServer(data.message);
+        });
       });
   }
 
   function handleSubmitLogin(password, email) {
-    mainApi.authorize(email, password).then((data) => {
+    mainApi.authorize(email, password)
+    .then((data) => {
       if (data) {
         setLoggedIn(true);
-        history.push("/");
+        history.push("/movies");
         const promisUserInfo = mainApi.getUserInfo();
         const promisGetMovies = mainApi.getMovies();
         Promise.all([promisUserInfo, promisGetMovies])
@@ -97,21 +106,32 @@ function App() {
             setCurrentUser({ name: userInform.data.name, email: userInform.data.email });
             setMoviesSaveValue(initialMovies.data);
           })
-          .catch((err) => console.log(err));
+          .catch((err) => {
+            err.then((data) => {
+            console.log(data.message);
+            })
+          });
       }
     })
-      .catch((err) => {
-        console.log(err);
-      });
+    .catch((err) => {
+        err.then((data) => {
+        setErrorServer(data.message);
+      })
+    });
   }
 
-  function handleUpdateUser(name, email) {
+  function handleUpdateUser(name, email, updateSaveStatus) {
     mainApi.updateUser(name, email)
       .then((newUserInfo) => {
         setCurrentUser({ name: newUserInfo.data.name, email: newUserInfo.data.email });
+        updateSaveStatus("Сохранено");
       })
-      .catch((err) => console.log(err));
-  }
+      .catch((err) => {
+        err.then((data) => {
+        setErrorServer(data.message);
+      })
+    });
+    }
 
   function handleSubmitOut() {
     mainApi.out()
@@ -120,6 +140,7 @@ function App() {
   }
 
   function saveMovies(movie) {
+    console.log(movie);
     mainApi.saveMovies(movie.country,
       movie.director,
       movie.duration,
@@ -134,59 +155,64 @@ function App() {
       .then((newMovies) => {
         setMoviesSaveValue([newMovies.data, ...moviesSave]);
       })
-        .catch((err) => console.log(err));
+      .catch((err) => {
+        err.then((data) => {
+        alert("Не удалось сохранить фильм");
+      });
+    });
   }
 
   function deleteMovies(id) {
     let trueId = matchingIdSereverToDB(id);
     mainApi.deleteMovies(trueId)
-    .then(()=>{
-      setMoviesSaveValue((state) => {return state.filter((m) => {return m._id != trueId})});
-    })
-    .catch((err) => console.log(err));
+      .then(() => {
+        setMoviesSaveValue((state) => { return state.filter((m) => { return m._id != trueId }) });
+      })
+      .catch((err) => console.log(err));
   }
 
   function matchingIdSereverToDB(id) {
     const regex = /^[0-9a-fA-F]{24}$/;
-    if (!regex.test(id)){
-      return moviesSave.find((movie)=>{
-        return movie.movieId == id})._id;
+    if (!regex.test(id)) {
+      return moviesSave.find((movie) => {
+        return movie.movieId == id
+      })._id;
     }
     return id;
   }
 
   function checkSaved(id) {
     if (moviesSave)
-     return moviesSave.some(i => i.movieId === id);
+      return moviesSave.some(i => i.movieId === id);
     else
-     return false;
+      return false;
   }
 
-  return (
+    return (
     <div className="App">
       <CurrentUserContext.Provider value={currentUser}>
-        {loggedIn ? <Header loggedIn={loggedIn} onClickSavedMovies={setSaveMoviesFinded}/> : ''}
+        {loggedIn ? <Header loggedIn={loggedIn} OnClickLink={setErrorServer} onClickSavedMovies={setSaveMoviesFinded} /> : ''}
         <Switch>
           <Route path="/sign-in">
-            <Login handleSubmit={handleSubmitLogin} />
+            <Login handleSubmit={handleSubmitLogin} errorText={errorServer} OnClickLink={setErrorServer} />
           </Route>
           <Route path="/sign-up">
-            <Register handleSubmit={handleSubmitRegister} />
+            <Register handleSubmit={handleSubmitRegister} errorText={errorServer} OnClickLink={setErrorServer} />
           </Route>
           <Route path="/movies">
-            {!loggedIn ? <Redirect to="/" /> : <Movies movies={findMovies} onSearch={handleSubmitSearch} onSaveMovie={saveMovies}  onCheckSaved={checkSaved} onDeleteMovies={deleteMovies} onLoadingMovies={onLoadingMovies}/>}
+            {!loggedIn ? <Redirect to="/" /> : <Movies movies={findMovies} onSearch={handleSubmitSearch} onSaveMovie={saveMovies} onCheckSaved={checkSaved} onDeleteMovies={deleteMovies} onLoadingMovies={onLoadingMovies} header={findHeader} />}
           </Route>
           <Route path="/saved-movies">
-            {!loggedIn ? <Redirect to="/" /> : <SavedMovies movies={saveMoviesFinded ? findMoviesSave : moviesSave} onDeleteMovies={deleteMovies} onLoadingMovies={onLoadingMovies} onSearch={handleSubmitSearchSaveMovies}/>}
+            {!loggedIn ? <Redirect to="/" /> : <SavedMovies movies={saveMoviesFinded ? findMoviesSave : moviesSave} onDeleteMovies={deleteMovies} onLoadingMovies={onLoadingMovies} onSearch={handleSubmitSearchSaveMovies} header={findHeader} />}
           </Route>
           <Route path="/profile">
-            {!loggedIn ? <Redirect to="/" /> : <Profile name={currentUser.name} email={currentUser.email} handleSubmit={handleUpdateUser} handleSubmitOut={handleSubmitOut} />}
+            {!loggedIn ? <Redirect to="/" /> : <Profile errorText={errorServer} name={currentUser.name} email={currentUser.email} handleSubmit={handleUpdateUser} handleSubmitOut={handleSubmitOut} />}
           </Route>
-          <Route exact path="/">
-            {loggedIn ? '' : <Header loggedIn={loggedIn} />}
+          <Route exact path="/" exact>
+            {loggedIn ? '' : <Header loggedIn={loggedIn} OnClickLink={setErrorServer} />}
             <Main />
           </Route>
-          <Route >
+          <Route path="/*">
             <PageNotFound />
           </Route>
         </Switch>

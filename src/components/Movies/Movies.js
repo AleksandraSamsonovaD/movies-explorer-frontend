@@ -9,7 +9,7 @@ function Movies(props) {
       <SearchForm onSearch={props.onSearch} />
       {props.onLoadingMovies ? 
       <Preloader/> :
-      <MoviesCardList movies={props.movies} page__save={false} onSaveMovie={props.onSaveMovie} onCheckSaved={props.onCheckSaved} onDeleteMovies={props.onDeleteMovies}/>
+      <MoviesCardList movies={props.movies} page__save={false} onSaveMovie={props.onSaveMovie} onCheckSaved={props.onCheckSaved} onDeleteMovies={props.onDeleteMovies} header={props.header}/>
       }
     </div>
   );

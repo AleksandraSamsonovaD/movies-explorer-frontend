@@ -23,7 +23,7 @@ function MoviesCard(props) {
     }
   }
   return (
-    <div className="moviesCard">
+    <a className="moviesCard" href={props.movie.trailerLink} target="_blank" title ={props.movie.trailerLink ? "Ссылка на трейлер" : "Ссылка отсутствует"}    >
       <div className="moviesCard__contener">
         <div className="moviesCard__desription">
           <h2 className="moviesCard__title">{props.movie.nameRU}</h2>
@@ -37,7 +37,7 @@ function MoviesCard(props) {
         </button>
       </div>
       <img className="moviesCard__image" alt={props.movie.nameRU} src= {`${props.page__save ?  props.movie.image : `https://api.nomoreparties.co${props.movie.image.url}`}`}  />
-    </div>
+    </a>
   );
 }
 

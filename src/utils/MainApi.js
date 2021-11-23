@@ -1,10 +1,14 @@
-export const BASE_URL = 'https://movies.samsonova.nomoredomains.monster/api';
+ import  {BASE_URL} from "../utils/utils" 
 
-const _checkResponse = (res) => {
+const _checkResponseJSON = (res) => {
     if (res.ok) {
         return res.json();
     }
-    return Promise.reject(`Ошибка: ${res.status}`);
+    return Promise.reject(res.json());
+}
+
+const _checkResponseStatus = (res) => {
+    return res.ok;
 }
 
 export const register = (email, password, name) => {
@@ -17,9 +21,7 @@ export const register = (email, password, name) => {
         },
         body: JSON.stringify({ email, password, name })
     })
-        .then((response) => {
-            return (response.ok)
-        });
+        .then((response => { return _checkResponseJSON(response) }))
 }
 
 export const authorize = (email, password) => {
@@ -32,10 +34,7 @@ export const authorize = (email, password) => {
         },
         body: JSON.stringify({ email, password })
     })
-        .then((response) => {
-            return (response.ok)
-        })
-        .catch(err => console.log(err))
+        .then((response => { return _checkResponseJSON(response) }))
 }
 
 export const out = () => {
@@ -43,16 +42,15 @@ export const out = () => {
         method: 'POST',
         credentials: 'include',
     })
-        .then((response => { return _checkResponse(response) }))
-        .catch(err => console.log(err))
-}
+        .then((response => { return _checkResponseJSON(response) }));
+    }
 
 export const getUserInfo = () => {
     return fetch(`${BASE_URL}/users/me`, {
         method: 'GET',
         credentials: 'include',
     })
-        .then((response => { return _checkResponse(response) }))
+        .then((response => { return _checkResponseJSON(response) }))
 }
 
 export const updateUser = (name, email) => {
@@ -66,7 +64,7 @@ export const updateUser = (name, email) => {
         body: JSON.stringify({ name, email })
     })
         .then((response) => {
-            return _checkResponse(response)
+            return _checkResponseJSON(response)
         });
 }
 
@@ -76,7 +74,7 @@ export const getMovies = () => {
         method: 'GET',
         credentials: 'include',
     })
-        .then((response => { return _checkResponse(response) }))
+        .then((response => { return _checkResponseJSON(response) }))
 }
 
 export const saveMovies = (country,
@@ -111,7 +109,7 @@ export const saveMovies = (country,
             movieId,
         })
     })
-    .then((response => { return _checkResponse(response) }));
+    .then((response => { return _checkResponseJSON(response) }));
 }
 
 export const deleteMovies = (id) => {
@@ -120,7 +118,7 @@ export const deleteMovies = (id) => {
         credentials: 'include'
     })
         .then((response) => {
-            return _checkResponse(response)
+            return _checkResponseJSON(response)
         });
 }
 

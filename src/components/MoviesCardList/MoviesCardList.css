@@ -5,9 +5,7 @@
     width: 90%;
     margin: 0 auto;
 }
-.moviesCardList__header_hidden{
-    display: none;
-}
+
 .movies__button{
     padding: 11px 60px 9px;
     margin: 50px auto 80px;

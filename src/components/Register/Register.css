@@ -6,6 +6,10 @@
 }
 .register__logo{
     margin: 70px 0 40px;
+    padding: 0;
+}
+.logo__image{
+    margin: 70px 0 40px;
 }
 .register__text{
     margin: 0 auto 10px;
@@ -56,7 +60,6 @@
     margin: 10px 0;
 }
 .register__error_input{
-    text-align: left;
     color: red;
     font-family: Inter, Arial, sans-serif;
     font-style: normal;

@@ -9,7 +9,7 @@ function SavedMovies(props) {
       <SearchForm onSearch={props.onSearch} />
         {props.onLoadingMovies ? 
         <Preloader/> :
-        <MoviesCardList movies={props.movies} page__save={true} onDeleteMovies={props.onDeleteMovies} />
+        <MoviesCardList movies={props.movies} page__save={true} onDeleteMovies={props.onDeleteMovies} header={props.header} />
         }
     </div>
   );
