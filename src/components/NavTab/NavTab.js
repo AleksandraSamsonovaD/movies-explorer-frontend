@@ -5,9 +5,9 @@ import { NavLink} from 'react-router-dom';
 function NavTab() {
   return (
       <nav className="navTab">
-      <NavLink className = "navTab__item" to="/aboutProject">О проекте</NavLink>
-      <NavLink className = "navTab__item" to="/techs">Технологии</NavLink>
-      <NavLink className = "navTab__item" to="/aboutMe">Студент</NavLink>
+      <a className = "navTab__item" href="#aboutProject">О проекте</a>
+      <a className = "navTab__item" href="#techs">Технологии</a>
+      <a className = "navTab__item" href="#aboutMe">Студент</a>
     </nav>
   );
 }
