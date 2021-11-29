@@ -2,6 +2,8 @@
     width: 364px;
     background-color: #222222;
     margin: 0 auto;
+    text-decoration: none;
+    color: white;
 }
 .moviesCard__contener{
     margin: 0;

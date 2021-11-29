@@ -6,6 +6,10 @@
 }
 .login__logo{
     margin: 70px 0 40px;
+    padding: 0;
+}
+.logo__image{
+    margin: 70px 0 40px;
 }
 .login__text{
     margin: 0 auto 10px;
@@ -56,6 +60,14 @@
     margin: 10px 0;
 }
 
+.login__error_input{
+    color: red;
+    font-family: Inter, Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+}
 @media (max-width: 1024px)  {
     .login{
         width: 50%;

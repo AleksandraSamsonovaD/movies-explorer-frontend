@@ -1,12 +1,16 @@
 import './SavedMovies.css';
-import SearchForm from'../SearchForm/SearchForm';
+import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import Preloader from '../Preloader/Preloader';
 
 function SavedMovies(props) {
   return (
     <div className="savedMovies">
-      <SearchForm/>
-      <MoviesCardList movies={props.movies} page__save={true} />
+      <SearchForm onSearch={props.onSearch} />
+        {props.onLoadingMovies ? 
+        <Preloader/> :
+        <MoviesCardList movies={props.movies} page__save={true} onDeleteMovies={props.onDeleteMovies} header={props.header} />
+        }
     </div>
   );
 }

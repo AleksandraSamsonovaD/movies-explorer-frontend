@@ -31,6 +31,15 @@
     color: white;
     
 }
+.form__save:hover{
+    cursor: pointer;
+}
+.form__save_disabled{
+    background-color: gray;
+}
+.form__save_disabled:hover{
+    cursor:default;
+}
 
 @media (max-width: 768px)  {
     .form__save{

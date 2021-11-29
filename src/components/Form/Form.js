@@ -5,7 +5,7 @@ function Form(props) {
             <h2 className="form__title">{props.title}</h2>
             <form className="form__container" onSubmit={props.handleSubmit}>
                 {props.children}
-                <button type="submit" className="form__save" >{props.buttonText}</button>
+                <button type="submit" className= {`form__save ${props.disabledButton ? '' : 'form__save_disabled'} `}  disabled={!props.disabledButton} >{props.buttonText}</button>
             </form>
         </div>
     )

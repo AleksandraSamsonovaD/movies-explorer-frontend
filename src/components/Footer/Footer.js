@@ -7,9 +7,9 @@ function Footer() {
       <div className="footer_blocks">
         <p className="footer__copyright" >&copy;2021.</p>
         <div className="footer__links">
-          <a className="footer__link" href="#">Яндекс.Практикум</a>
-          <a className="footer__link" href="#">Github</a>
-          <a className="footer__link" href="#">Facebook</a>
+          <a className="footer__link" href="https://practicum.yandex.ru/profile/web/" target="_blank">Яндекс.Практикум</a>
+          <a className="footer__link" href="https://github.com/AleksandraSamsonovaD" target="_blank">Github</a>
+          <a className="footer__link" href="https://vk.com/id111993315" target="_blank">Вконтакте</a>
         </div>
       </div>
     </footer>
